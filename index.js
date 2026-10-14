@@ -1,5 +1,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js"
-import { getDatabase } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-database.js"
+import { getDatabase,
+        ref,
+        push
+ } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-database.js"
 
 
 const firebaseConfig = {
@@ -8,22 +11,18 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig)
 const database = getDatabase(app)
+const referenceInDB = ref(database, "leads")
 
 console.log("Database URL from .env:", firebaseConfig.databaseURL)
 console.log("Firebase app initialized:", app.name)
 console.log("Database object:", database)
 
-let myLeads = []
+
 const inputEl = document.getElementById("input-el")
 const inputBtn = document.getElementById("input-btn")
 const ulEl = document.getElementById("ul-el")
 const deleteBtn = document.getElementById("delete-btn")
-const leadsFromLocalStorage = JSON.parse( localStorage.getItem("myLeads") )
 
-if (leadsFromLocalStorage) {
-    myLeads = leadsFromLocalStorage
-    render(myLeads)
-}
 
 function render(leads) {
     let listItems = ""
@@ -40,14 +39,10 @@ function render(leads) {
 }
 
 deleteBtn.addEventListener("dblclick", function() {
-    localStorage.clear()
-    myLeads = []
-    render(myLeads)
+    
 })
 
 inputBtn.addEventListener("click", function() {
-    myLeads.push(inputEl.value)
+    push(referenceInDB, inputEl.value)
     inputEl.value = ""
-    localStorage.setItem("myLeads", JSON.stringify(myLeads) )
-    render(myLeads)
 })
