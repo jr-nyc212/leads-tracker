@@ -1,0 +1,19 @@
+# Secrets: never commit environment files
+.env
+.env.*
+!.env.example
+
+# Dependencies (reinstall with npm install)
+node_modules/
+
+# Build output
+dist/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor and OS files
+.vscode/
+.idea/
+.DS_Store
