@@ -1,0 +1,4 @@
+# Netlify build settings. Kept in the repo so every deploy uses the same values.
+[build]
+  command = "npm run build"
+  publish = "dist"
