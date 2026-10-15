@@ -7,6 +7,8 @@ starting point was the localStorage version from Scrimba's JavaScript
 course; this repo is the rework to a real backend, one commit per lesson so
 the history reads as a changelog.
 
+Live demo: https://leads-tracker-ext.netlify.app
+
 ## What was built
 
 - **Firebase connection.** Initialised the app and Realtime Database from
